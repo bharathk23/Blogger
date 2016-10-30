@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <h:outputScript name="jquery/jquery-plugins.js" library="primefaces"/>
+    <title>p home</title>
+
+</h:head>
+<h:body style="background-color: greenyellow">
+    <f:view>
+        <h1 style="padding-left: 40%">ShareThoughts</h1>
+        <h:form>
+            <b><p:outputLabel value="Hello ,#{login.userName}"/></b><br/>
+            <p:commandLink value="Go to the homepage" action="PublicHome"/>
+
+            <p:commandLink value="Logout" action="#{login.logout}" style="padding-left: 5%"/>
+            <p:commandLink value="Create a Post" action="Blog" style="padding-left: 5%"/>
+
+        </h:form>
+        <hr/>
+        <p:dataTable value="#{userpost.userPostList}" var="v" border="0" width="100%" style="padding-right: 5%;padding-left: 5%">
+            <div align="center">
+                <p:column>
+                    <h:form >
+                        <b>Blogid:</b><br/>#{v.blogId}<br/>
+                        <b>Title:</b><br/>#{v.title}<br/>
+                        <b>Description</b>:<br/>#{v.description}<br/>
+                        <b>Blogdate:</b><br/>#{v.blogDate}<br/>
+                        <p>
+                            <h:commandButton value="like" action="#{blog.Like}">
+                                <f:param name="id" value="#{v.blogId}"/>
+                            </h:commandButton>
+
+                            Like(#{v.likedcount})
+                            <input type="hidden" name="hiddenid" value="#{v.blogId}"/>
+                            <p:commandButton value="View Comments"  actionListener="#{comment.openComment}">
+                            </p:commandButton>
+                            <br/>
+                            <h:inputText id="comment" value="#{comment.comment}"/>
+                            <h:commandButton value="comment" action="#{comment.Commented}">
+                                <f:param name="id" value="#{v.blogId}"/>
+                            </h:commandButton>
+                        </p>
+
+                    </h:form>
+                </p:column>
+            </div><br/>
+        </p:dataTable>
+
+    </f:view>
+</h:body>
+</html>

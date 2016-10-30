@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"  >
+<f:view>
+    <h:head>
+        <title>Home Page</title>
+
+    </h:head>
+    <body >
+
+    <h:panelGrid>
+        <h:form>
+            <h:outputLabel value="Username:"/>
+            <h:inputText name="userName" id="userName" value="#{login.userName}"/>
+            <h:outputLabel value="Password:"/>
+            <h:inputSecret name="password" value="#{login.password}"/>
+            <h:commandButton value="Login" action="#{login.doLogin}"/>
+
+        </h:form>
+
+    </h:panelGrid>
+
+
+    </body>
+</f:view>
+</html>
